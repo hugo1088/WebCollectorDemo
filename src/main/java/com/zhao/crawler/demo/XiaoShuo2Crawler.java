@@ -27,8 +27,8 @@ public class XiaoShuo2Crawler extends BreadthCrawler {
     public XiaoShuo2Crawler(String crawlPath, boolean autoParse) {
         super(crawlPath, autoParse);
         //天道图书馆
-        this.addSeed("http://www.biqugeg.com/17_17139/");
-        this.addRegex("http://www.biqugeg.com/17_17139/.*");
+        this.addSeed("https://www.biqugeg.com/17_17139/");
+        this.addRegex("https://www.biqugeg.com/17_17139/.*");
         setThreads(50);
         getConf().setTopN(100);
 //        setResumable(true);
@@ -39,7 +39,7 @@ public class XiaoShuo2Crawler extends BreadthCrawler {
         String url = page.url();
         /*if page is news page*/
         // if (Pattern.matches("http://www.biqiuge.com/book/4772/.+html", url)) {
-        if (Pattern.matches("http://www.biqugeg.com/17_17139/.+html", url)) {
+        if (Pattern.matches("https://www.biqugeg.com/17_17139/.+html", url)) {
             /*extract title and content of news by css selector*/
             String title = page.select("div[class=content]>h1").first().text();
             Elements elements = page.select("div#content");
@@ -47,7 +47,7 @@ public class XiaoShuo2Crawler extends BreadthCrawler {
             int id = chineseNumber2Int(title);
 
             Element nextPage = page.select("div[class=page_chapter]>ul>li").get(2).select("a").first();
-            String linkHref = "http://www.biqiuge.com"+nextPage.attr("href"); //取得链接地址/book/4772/6922557.html
+            String linkHref = "https://www.biqugeg.com"+nextPage.attr("href"); //取得链接地址/book/4772/6922557.html
             System.out.println("下一章："+linkHref);
 
             //String content = page.("div#content");
